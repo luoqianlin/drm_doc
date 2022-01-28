@@ -71,6 +71,7 @@ static uint32_t find_crtc(int drm_fd, drmModeRes *res, drmModeConnector *conn,
 
 			drmModeFreeEncoder(enc);
 			*taken_crtcs |= bit;
+            printf("crtcs index:%d\n",i);
 			return res->crtcs[i];
 		}
 
@@ -192,9 +193,9 @@ static void page_flip_handler(int drm_fd, unsigned sequence, unsigned tv_sec,
 int main(void)
 {
 	/* We just take the first GPU that exists. */
-	int drm_fd = open("/dev/dri/card0", O_RDWR | O_NONBLOCK);
+	int drm_fd = open("/dev/dri/card1", O_RDWR | O_NONBLOCK);
 	if (drm_fd < 0) {
-		perror("/dev/dri/card0");
+		perror("/dev/dri/card1");
 		return 1;
 	}
 
@@ -221,6 +222,7 @@ int main(void)
 		}
 
 		conn->id = drm_conn->connector_id;
+        printf("Use connector id:%d\n",conn->id);
 		snprintf(conn->name, sizeof conn->name, "%s-%"PRIu32,
 			conn_str(drm_conn->connector_type),
 			drm_conn->connector_type_id);

@@ -60,9 +60,9 @@ static int refresh_rate(drmModeModeInfo *mode)
 int main(void)
 {
 	/* We just take the first GPU that exists. */
-	int drm_fd = open("/dev/dri/card0", O_RDWR | O_NONBLOCK);
+	int drm_fd = open("/dev/dri/card1", O_RDWR | O_NONBLOCK);
 	if (drm_fd < 0) {
-		perror("/dev/dri/card0");
+		perror("/dev/dri/card1");
 		return 1;
 	}
 
@@ -73,6 +73,7 @@ int main(void)
 	}
 
 	for (int i = 0; i < res->count_connectors; ++i) {
+        printf("connector id:%d\n",res->connectors[i]);
 		drmModeConnector *conn = drmModeGetConnector(drm_fd, res->connectors[i]);
 		if (!conn) {
 			perror("drmModeGetConnector");

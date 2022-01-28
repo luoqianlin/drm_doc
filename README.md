@@ -1,27 +1,13 @@
- [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+## DRM 应用层demo
 
-This is an ongoing series of articles describing how to use the Linux DRM API.
+原项目上添加其他demo，主要用于学习使用
 
-Complete code examples are provided, but you're encouraged to try write along
-yourself, and experiment with the various parts. However, you may want to save
-all of your work before doing so, as it's possible to get your computer into an
-unusable state, especially when we're dealing with the TTY.
 
-There are probably still a lot of minor spelling and grammatical mistakes. Any
-feedback on the articles or fixes are appreciated.
 
----
+参考:
 
-Dependencies:
-- libdrm
-
-How to run examples (from within subdirectories):
-```sh
-meson build
-cd build
-ninja
-./prog_name
-```
-
-Most of the examples will only work when run in their own virtual terminal, and
-will fail inside Xorg or a Wayland Compositor.
+- [DRM（Direct Rendering Manager）学习简介](https://blog.csdn.net/hexiaolong2009/article/details/83720940)
+- [识别 Linux 中的显卡信息](https://www.intel.cn/content/www/cn/zh/support/articles/000005520/graphics.html)
+- [libdrm-modetest原理及图显系统验证方法](https://cloud.tencent.com/developer/article/1855136)
+- [BusID but which?](https://bbs.archlinux.org/viewtopic.php?id=23200)
+  
