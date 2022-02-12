@@ -3,15 +3,18 @@ project(drm_test)
 
 set(CMAKE_C_STANDARD 11)
 include_directories(
-        /usr/include/drm
+        #        /usr/include/drm
+        /usr/local/include/libdrm
 )
-
+link_directories(
+        /usr/local/lib/x86_64-linux-gnu
+)
 add_compile_definitions(_POSIX_C_SOURCE=200809L
         )
 
 link_libraries(
         drm
-        #        kms
+#        kms
 )
 
 add_executable(01_intro
@@ -44,4 +47,35 @@ add_executable(
 add_executable(
         modeset-atomic-plane
         modeset-atomic-plane.c
+)
+
+add_library(
+        util
+        util/format.c
+        util/kms.c
+        util/pattern.c
+)
+
+add_executable(
+        modetest
+        modetest/buffers.c
+        modetest/cursor.c
+        modetest/modetest.c
+)
+target_include_directories(
+        modetest
+        PUBLIC .
+)
+
+target_link_libraries(
+        modetest
+        util
+        pthread
+        drm
+
+)
+
+add_executable(
+        bind_test
+        bind_test.cpp
 )
